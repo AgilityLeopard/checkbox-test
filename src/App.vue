@@ -1,28 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Демонстрация чек-бокса</h1>
+    <CheckboxComponent
+      v-for="option in options"
+      :key="option.text"
+      :options="option"
+      @onChange="(newValue) => option.value = newValue"
+    >
+
+    </CheckboxComponent>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CheckboxComponent from "./components/checkbox/CheckboxComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    CheckboxComponent,
+  },
+  data() {
+    return {
+      options:[ 
+        {text:'Яблоко',   disabled:false, value:false}, 
+        {text:'Апельсин', disabled:false, value:false}, 
+        {text:'Груша',    disabled:false, value:true}, 
+        {text:'Томат?',   disabled:true,  value:false}, 
+        {text:'Не фрукт?',   disabled:true,  value:true},
+      ]
+    };
+  },
+};
 </script>
 
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import "./assets/css/main.css";
 </style>
